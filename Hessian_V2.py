@@ -18,9 +18,9 @@ from scipy.spatial import cKDTree
 
 
 DEFAULTS = (
-    "/Users/4c/Desktop/GHQ/data/loto7_4700_k81.csv",
-    "/Users/4c/Desktop/GHQ/data/loto7_4700_k81_loto_2972.csv",
-    "/Users/4c/Desktop/GHQ/data/loto7_4700_k81_loto_plus_1728.csv",
+    "/data/loto7_4700_k81.csv",
+    "/data/loto7_4700_k81_loto_2972.csv",
+    "/data/loto7_4700_k81_loto_plus_1728.csv",
 )
 
 WINDOW = 192
@@ -997,7 +997,7 @@ if __name__ == "__main__":
 
 
 """
-CSV: /Users/4c/Desktop/GHQ/data/loto7_4700_k81.csv
+CSV: /data/loto7_4700_k81.csv
 Validacija=48; odvojeni test=64; parametri=(0.5, 0.05)
 HESSIAN V2: prosek=1.4375; pogoci 0..7=[10, 24, 23, 6, 1, 0, 0, 0]
 Kontrola: isti skor, zamene jednog broja: prosek=1.3750; pogoci 0..7=[9, 28, 22, 4, 1, 0, 0, 0]
@@ -1007,7 +1007,7 @@ Unutrasnja praznina najmanje 20: model/stvarna kola = 1 1
 Razlicitih izbora: 64 ; najvece ponavljanje: 1
 Razlicitih oblika: 23 ; najcesci oblik: [2, 11] ; broj pojavljivanja: 10
 Hessian promenio izbor u 16/64 testnih kola.
-SLEDECI RED 4701: 1,7,21,27,29,37,39
+SLEDECI RED 4701: 1,x,21,y,29,z,39
 Skor=-3.4746495471; koraci=39; istorijsko ponavljanje=False
 Oblik: najduzi niz, najveca unutrasnja praznina = [1, 13]
 Kontrolni izbor: 2,6,19,25,28,35,37
@@ -1016,7 +1016,7 @@ Skor nije verovatnoca pogotka; globalni maksimum nije potvrden.
 
 
 
-CSV: /Users/4c/Desktop/GHQ/data/loto7_4700_k81_loto_2972.csv
+CSV: /data/loto7_4700_k81_loto_2972.csv
 Validacija=48; odvojeni test=64; parametri=(0.75, 0.1)
 HESSIAN V2: prosek=1.2812; pogoci 0..7=[12, 31, 13, 7, 1, 0, 0, 0]
 Kontrola: isti skor, zamene jednog broja: prosek=1.3281; pogoci 0..7=[11, 30, 16, 5, 2, 0, 0, 0]
@@ -1026,7 +1026,7 @@ Unutrasnja praznina najmanje 20: model/stvarna kola = 0 1
 Razlicitih izbora: 64 ; najvece ponavljanje: 1
 Razlicitih oblika: 25 ; najcesci oblik: [2, 9] ; broj pojavljivanja: 6
 Hessian promenio izbor u 17/64 testnih kola.
-SLEDECI RED 2973: 7,9,14,20,31,32,35
+SLEDECI RED 2973: 7,x,14,y,31,z,35
 Skor=-4.2611049325; koraci=72; istorijsko ponavljanje=False
 Oblik: najduzi niz, najveca unutrasnja praznina = [2, 10]
 Kontrolni izbor: 8,10,15,21,32,33,36
@@ -1035,7 +1035,7 @@ Skor nije verovatnoca pogotka; globalni maksimum nije potvrden.
 
 
 
-CSV: /Users/4c/Desktop/GHQ/data/loto7_4700_k81_loto_plus_1728.csv
+CSV: /data/loto7_4700_k81_loto_plus_1728.csv
 Validacija=48; odvojeni test=64; parametri=(0.5, 0.05)
 HESSIAN V2: prosek=1.0781; pogoci 0..7=[16, 29, 17, 2, 0, 0, 0, 0]
 Kontrola: isti skor, zamene jednog broja: prosek=1.1406; pogoci 0..7=[17, 28, 16, 0, 2, 1, 0, 0]
@@ -1045,7 +1045,7 @@ Unutrasnja praznina najmanje 20: model/stvarna kola = 0 1
 Razlicitih izbora: 64 ; najvece ponavljanje: 1
 Razlicitih oblika: 24 ; najcesci oblik: [2, 8] ; broj pojavljivanja: 9
 Hessian promenio izbor u 17/64 testnih kola.
-SLEDECI RED 1729: 2,5,6,15,16,32,35
+SLEDECI RED 1729: 2,x,6,y,16,z,35
 Skor=-3.4467923505; koraci=48; istorijsko ponavljanje=False
 Oblik: najduzi niz, najveca unutrasnja praznina = [2, 15]
 Kontrolni izbor: 3,6,7,16,17,33,36
@@ -1056,12 +1056,13 @@ Skor nije verovatnoca pogotka; globalni maksimum nije potvrden.
 
 
 """
-Ispravljeni Hessian_V2.py. Polinomski skor je uklonjen. Na 64 testna kola svaki CSV dao je 64 različite sedmorke, bez nizova od pet uzastopnih brojeva i bez stalnog geometrijskog oblika. Konačni izlazi ne ponavljaju Walter V2.
-CSV	Prosek pogodaka	Sledeća kombinacija
-Zbirni 4700	1,4375	1,7,21,27,29,37,39
-Loto 2972	1,2812	7,9,14,20,31,32,35
-Plus 1728	1,0781	2,5,6,15,16,32,35
+Polinomski skor je uklonjen. 
+Na 64 testna kola svaki CSV dao je 64 različite sedmorke, bez nizova od pet uzastopnih brojeva i bez stalnog geometrijskog oblika. 
 
+CSV	        Prosek pogodaka	Sledeća kombinacija
+Zbirni 4700	1,4375	        1,x,21,y,29,z,39
+Loto 2972	1,2812	        7,x,14,y,31,z,35
+Plus 1728	1,0781	        2,x,6,y,16,z,35
 
 Hessian pretraga poboljšala je rezultat na zbirnom fajlu, ali ne i na druga dva.
 """
