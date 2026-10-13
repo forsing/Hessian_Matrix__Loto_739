@@ -17,9 +17,9 @@ from scipy.spatial import cKDTree
 
 
 DEFAULTS = (
-    "/Users/4c/Desktop/GHQ/data/loto7_4700_k81.csv",
-    "/Users/4c/Desktop/GHQ/data/loto7_4700_k81_loto_2972.csv",
-    "/Users/4c/Desktop/GHQ/data/loto7_4700_k81_loto_plus_1728.csv",
+    "/data/loto7_4700_k81.csv",
+    "/data/loto7_4700_k81_loto_2972.csv",
+    "/data/loto7_4700_k81_loto_plus_1728.csv",
 )
 
 WINDOW = 96
@@ -827,42 +827,42 @@ if __name__ == "__main__":
 
 
 """
-CSV: /Users/4c/Desktop/GHQ/data/loto7_4700_k81.csv
+CSV: /data/loto7_4700_k81.csv
 Hronologija: CSV mora biti od najstarijeg ka najnovijem kolu.
 Validacija: 48; odvojeni test: 64; alpha=0.01
 HESSIAN: KOORDINISANE PROMENE: prosek=1.1719; pogoci 0..7=[9, 40, 11, 3, 1, 0, 0, 0]
 Kontrola: isti skor, samo zamene jednog broja: prosek=1.1719; pogoci 0..7=[10, 38, 12, 3, 1, 0, 0, 0]
 Kontrola: prethodno izvuceno kolo: prosek=1.2344; pogoci 0..7=[13, 30, 15, 5, 1, 0, 0, 0]
 Hessian promenio izbor u 12/64 testnih kola.
-SLEDECI RED 4701: 3,7,8,9,10,11,39
+SLEDECI RED 4701: 3,x,8,y,10,z,39
 Skor=6.1039209085; svi koraci=103; istorijsko ponavljanje=False
 Kontrolni izbor: 5,9,10,11,12,13,39
 Opseg: 12 istorijskih polazista, sve zamene jednog broja,
 parovi sa koracima [-4, -2, -1, 1, 2, 4], do 32 predloga po tacki.
 Skor nije verovatnoca; globalni maksimum nije potvrden.
 
-CSV: /Users/4c/Desktop/GHQ/data/loto7_4700_k81_loto_2972.csv
+CSV: /data/loto7_4700_k81_loto_2972.csv
 Hronologija: CSV mora biti od najstarijeg ka najnovijem kolu.
 Validacija: 48; odvojeni test: 64; alpha=0.01
 HESSIAN: KOORDINISANE PROMENE: prosek=1.2969; pogoci 0..7=[17, 21, 17, 8, 1, 0, 0, 0]
 Kontrola: isti skor, samo zamene jednog broja: prosek=1.3281; pogoci 0..7=[16, 21, 18, 8, 1, 0, 0, 0]
 Kontrola: prethodno izvuceno kolo: prosek=1.3281; pogoci 0..7=[10, 30, 17, 7, 0, 0, 0, 0]
 Hessian promenio izbor u 14/64 testnih kola.
-SLEDECI RED 2973: 32,34,35,36,37,38,39
+SLEDECI RED 2973: 32,x,35,y,37,z,39
 Skor=2.7680807452; svi koraci=123; istorijsko ponavljanje=False
 Kontrolni izbor: 32,34,35,36,37,38,39
 Opseg: 12 istorijskih polazista, sve zamene jednog broja,
 parovi sa koracima [-4, -2, -1, 1, 2, 4], do 32 predloga po tacki.
 Skor nije verovatnoca; globalni maksimum nije potvrden.
 
-CSV: /Users/4c/Desktop/GHQ/data/loto7_4700_k81_loto_plus_1728.csv
+CSV: /data/loto7_4700_k81_loto_plus_1728.csv
 Hronologija: CSV mora biti od najstarijeg ka najnovijem kolu.
 Validacija: 48; odvojeni test: 64; alpha=0.01
 HESSIAN: KOORDINISANE PROMENE: prosek=1.3125; pogoci 0..7=[10, 30, 18, 6, 0, 0, 0, 0]
 Kontrola: isti skor, samo zamene jednog broja: prosek=1.3281; pogoci 0..7=[10, 30, 17, 7, 0, 0, 0, 0]
 Kontrola: prethodno izvuceno kolo: prosek=1.2969; pogoci 0..7=[15, 23, 18, 8, 0, 0, 0, 0]
 Hessian promenio izbor u 10/64 testnih kola.
-SLEDECI RED 1729: 1,2,3,4,17,18,22
+SLEDECI RED 1729: 1,x,3,y,17,z,22
 Skor=1.7094543638; svi koraci=138; istorijsko ponavljanje=False
 Kontrolni izbor: 1,2,3,4,17,18,22
 Opseg: 12 istorijskih polazista, sve zamene jednog broja,
@@ -880,7 +880,7 @@ Koristi se u lokalnoj kvadratnoj aproksimaciji i optimizaciji. MIT — Hessian i
 Za moj Loto model izdvojio bih pretragu koordinisanih promena. 
 Promena jednog broja može smanjiti skor, dok istovremena promena dva broja može povećati skor zbog njihove interakcije.
 
-1. Učimo gladak skor cele kombinacije, uslovljen prethodnim prelazima rasporeda razmaka.
+1. Učim gladak skor cele kombinacije, uslovljen prethodnim prelazima rasporeda razmaka.
 2. Računam gradijent i Hessian u sedam nezavisnih dimenzija razmaka.
 3. Njima usmeravam predloge zajedničkih promena, zatim ocenjujemo konkretne validne sedmorke.
 4. Poredim rezultat sa pretragom koja menja samo jedan broj, uz potpuno isti naučeni skor.
@@ -896,7 +896,7 @@ Uči gladak skor cele kombinacije, a gradijent i Hessian će usmeravati zajedni�
 Proverena na 48 validacionih i 64 odvojena testna kola. Hessian pretraga povećava ili zadržava naučeni skor, ali na ovom testu nije poboljšala prosečan broj pogodaka u odnosu na pretragu jednog broja.
 
 CSV	        Hessian prosek	Jedan broj	Sledeća kombinacija
-Zbirni 4700	1,1719	        1,1719	    3,7,8,9,10,11,39
-Loto 2972	1,2969	        1,3281	    32,34,35,36,37,38,39
-Plus 1728	1,3125	        1,3281	    1,2,3,4,17,18,22
+Zbirni 4700	1,1719	        1,1719	    3,x,8,y,10,z,39
+Loto 2972	1,2969	        1,3281	    32,x,35,y,37,z,39
+Plus 1728	1,3125	        1,3281	    1,x,3,y,17,z,22
 """
